@@ -12,8 +12,7 @@ import time
 import sys
 
 #Using a headless chrome
-#***IMPORTANT*** Need to change path for your local machine 
-PATH = "/mnt/c/Users/angry/desktop/redbubbleScraper/web_scraper/chromedriver.exe"
+PATH = "./chromedriver.exe"
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 driver = webdriver.Chrome(executable_path=PATH, options=chrome_options)
