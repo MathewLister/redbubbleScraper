@@ -45,4 +45,4 @@ for link in design_card_links:
     print("Photo URL: ", design_photo_url)'''
 #Design name    
 for name in design_card_names:
-    print("Design Name: ", name.txt)
+    print("Design Name: ", name.contents)
