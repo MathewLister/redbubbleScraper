@@ -23,7 +23,7 @@ def main(url):
 
     # Target data
     product_card_links = html_soup.findAll("a", class_="styles__link--2sYi3")
-    # product_card_images = html_soup.findAll("img", class_="styles__image--2CwxX styles__rounded--1lyoH styles__fluid--3dxe-")
+    product_card_images = html_soup.findAll("img", class_="styles__image--2CwxX styles__rounded--1lyoH styles__fluid--3dxe-")
     product_card_names = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__display6--uq_8G styles__nowrap--2Vk3A styles__display-block--2XANJ")
     product_card_prices = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__body--3bpp7 styles__display-block--2XANJ")
 
