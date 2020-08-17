@@ -27,20 +27,18 @@ def main(url):
     product_card_names = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__display6--uq_8G styles__nowrap--2Vk3A styles__display-block--2XANJ")
     product_card_prices = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__body--3bpp7 styles__display-block--2XANJ")
 
-    # URL
-    for link in product_card_links:
-        # Design URL
-        design_url = link.get('href')
-        print("URL: ", design_url)
-    # Image source
-    '''for image in product_card_images:
-        design_photo_url = image.get('src')
-        print("Photo URL: ", image)'''
-    # Design name
-    for name in product_card_names:
-        print("Product Name: ", name.contents)
-    for price in product_card_prices:
-        print("Product Price: ", price.contents)
+    # CSV
+    filename = 'Products.csv'
+    f = open(filename, 'w')
+    headers = 'Product Link, Product Name, Product Price \n'
+    f.write(headers)
+
+    for link, name, price in zip(product_card_links, product_card_names, product_card_prices):
+        product_url = link.get('href')
+        f.write(product_url + ',' + (",".join(name.contents)) + ',' + price.text + '\n')
+
+    # Close file
+    f.close()
 
 
-main("https://www.redbubble.com/shop/ap/50235088")
+main("https://www.redbubble.com/shop/ap/55151924")

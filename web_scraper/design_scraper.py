@@ -23,19 +23,20 @@ driver.quit()
 html_soup = BeautifulSoup(html, 'html.parser')
 
 # Target data
+design_cards = html_soup.findAll("div", class_="xmasonry xmasonry-static styles__masonry--2pYZY")
 design_card_links = html_soup.findAll("a", class_="styles__link--2sYi3")
-# design_card_images = html_soup.findAll("img", class_="styles__image--2CwxX styles__rounded--1lyoH styles__fluid--3dxe-")
 design_card_names = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__display6--uq_8G styles__nowrap--2Vk3A styles__display-block--2XANJ ")
 
-# URL
-for link in design_card_links:
-    # Design URL
+# CSV
+filename = 'Designs.csv'
+f = open(filename, 'w')
+headers = 'Card Link, Design Name \n'
+f.write(headers)
+
+# Write data to CSV
+for link, name in zip(design_card_links, design_card_names):
     design_url = link.get('href')
-    print("URL: ", design_url)
-# Image source
-'''for image in design_card_images:
-    design_photo_url = image.get('src')
-    print("Photo URL: ", image)'''
-# Design name
-for name in design_card_names:
-    print("Design Name: ", name.contents)
+    f.write(design_url + ',' + (",".join(name.contents)) + '\n')
+
+# Close file
+f.close()
