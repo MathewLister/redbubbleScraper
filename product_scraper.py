@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-def main(url):
+def scrape_products(url, file_extension):
     # Using a headless chrome
     PATH = "./chromedriver.exe"
     chrome_options = Options()
@@ -28,17 +28,15 @@ def main(url):
     product_card_prices = html_soup.findAll("span", class_="styles__box--206r9 styles__text--NLf2i styles__body--3bpp7 styles__display-block--2XANJ")
 
     # CSV
-    filename = 'Products.csv'
+    filename = ('Products ' + file_extension + '.csv')
     f = open(filename, 'w')
     headers = 'Product Link, Product Name, Product Price \n'
     f.write(headers)
 
     for link, name, price in zip(product_card_links, product_card_names, product_card_prices):
         product_url = link.get('href')
+
         f.write(product_url + ',' + (",".join(name.contents)) + ',' + price.text + '\n')
 
     # Close file
     f.close()
-
-
-main("https://www.redbubble.com/shop/ap/55151924")
